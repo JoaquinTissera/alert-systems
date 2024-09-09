@@ -42,11 +42,13 @@ class Alerts {
     get getPersonalAlert(){
         return this.#personalAlert
     }
-
-
-
     
-    IsRead(){
+    /**
+     * Marks the alert as read.
+     *
+     * @returns {boolean} - Always returns true after marking the alert as read.
+     */
+    makeAsRead(){
         return this.#isRead = true
     }
 }

@@ -22,18 +22,34 @@ class AlertsSystem {
 
     // Use Case
 
+    /**
+     * Registers a new user in the system if not already registered.
+     *
+     * @param {string} name - The name of the user to register.
+     */
     registerUser(name){
         if(!this.#users[name]){
             this.#users[name] = new Users(name)
         }
     }
 
+    /**
+     * Registers a new topic in the system if not already registered.
+     *
+     * @param {string} name - The name of the topic to register.
+     */
     registerTopic(name){
         if(!this.#topics[name]){
             this.#topics[name] = new Topics(name)
         }
     }
 
+    /**
+     * Subscribes a user to a topic.
+     *
+     * @param {string} username - The name of the user.
+     * @param {string} topicName - The name of the topic.
+     */
     chooseTopics(username, topicName){
         const user = this.#users[username]
         const topic = this.#topics[topicName] 
@@ -42,6 +58,12 @@ class AlertsSystem {
         }
     }
 
+    /**
+     * Sends an alert to all users subscribed to a specific topic.
+     *
+     * @param {object} alert - The alert to send.
+     * @param {string} topicName - The name of the topic.
+     */
     sendAlertToTopic(alert, topicName){
         const topic = this.#topics[topicName]
         if(topic){
@@ -55,6 +77,12 @@ class AlertsSystem {
         }
     }
 
+    /**
+     * Sends an alert to a specific user.
+     *
+     * @param {object} alert - The alert to send.
+     * @param {string} username - The name of the user.
+     */
     sendAlertToUser(alert, username){
         const user = this.#users[username]
         if(user){
@@ -62,6 +90,12 @@ class AlertsSystem {
         }
     }
 
+    /**
+     * Lists all unread alerts for a specific user.
+     *
+     * @param {string} username - The name of the user.
+     * @returns {array} - A list of unread alerts for the user.
+     */
     listUnreadAlertToUser(username){
         const user = this.#users[username]
         if(user){
@@ -69,6 +103,12 @@ class AlertsSystem {
         }
     }
 
+    /**
+     * Lists all non-expired alerts for a specific topic.
+     *
+     * @param {string} topicName - The name of the topic.
+     * @returns {array} - A list of non-expired alerts for the topic.
+     */
     listAlertToTopic(topicName){
         const topic = this.#topics[topicName];
         if(topic){
